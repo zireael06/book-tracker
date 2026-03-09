@@ -1,0 +1,51 @@
+<%- include('partials/header.ejs'); %>
+
+<div class="box" id="heading">
+    <h1><%= listTitle %></h1>
+</div>
+
+<!-- Add Book Form -->
+<div class="form">
+    <form action="/add" method="post">
+        <input type="text" name="title" placeholder="Book Title" required>
+        <input type="number" name="rating" placeholder="Rating 0-5" min="0" max="5">
+        <textarea name="notes" placeholder="Your notes..."></textarea>
+        <input type="date" name="date_read">
+        <button type="submit">Add Book</button>
+    </form>
+</div>
+
+<!-- Book Cards -->
+<div class="box">
+    <% if(listItems.length === 0) { %>
+        <p>No books added yet.</p>
+    <% } %>
+
+    <% for(let book of listItems){ %>
+        <div class="book_item">
+            <div class="book_cover_container">
+                <img src="<%= book.cover_url || '/assets/default-cover.jpg' %>" class="book_cover">
+            </div>
+
+            <!-- Edit / Delete Buttons -->
+            <div class="book_controls">
+                <form action="/delete" method="post">
+                    <button type="submit" name="deleteItemId" value="<%= book.id %>" class="delete_button">Delete</button>
+                </form>
+                <a href="/edit/<%= book.id %>" class="edit_button">Edit</a>
+            </div>
+
+            <p><strong>Title:</strong> <%= book.title %></p>
+            <p><strong>Author:</strong> <%= book.author %></p>
+            <p><strong>Date Read:</strong> <%= book.date_read ? new Date(book.date_read).toLocaleDateString() : "Not recorded" %></p>
+            <p><strong>Notes:</strong> <%= book.notes %></p>
+            <p><strong>Rating:</strong> 
+            <% for(let i = 0; i < (book.rating || 0); i++) { %>
+                <span class="star">⭐</span>
+            <% } %>
+            </p>
+        </div>
+    <% } %>
+</div>
+
+<%- include('partials/footer.ejs'); %>
