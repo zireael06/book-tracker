@@ -1,60 +1,176 @@
 # Book Tracker
 
-A personal book tracking web app to keep track of the books you've read, your notes, ratings, and cover images. Covers are fetched from the [Open Library API](https://openlibrary.org/dev/docs/api/covers).
+A full-stack book tracking application built with **Node.js, Express, PostgreSQL, EJS, and the OpenLibrary API**.
+
+Book Tracker allows users to create and manage a personal reading list. When adding a book, the application automatically retrieves the author and cover image using the OpenLibrary API, then stores the information in a PostgreSQL database.
 
 ## Features
-- Add new books with title, notes, rating, and date read
-- Edit existing books
-- Delete books from your list
-- View book covers using Open Library Covers API
-- Star rating display for visual feedback
-- Responsive and user-friendly interface
 
-## Technologies
-- Node.js
-- Express.js
-- EJS templating
-- PostgreSQL
-- Axios
-- HTML, CSS 
+* Add books to a personal reading list
+* Automatically fetch book authors and cover images
+* Store book data in PostgreSQL
+* View all saved books
+* Edit book notes, ratings, and reading dates
+* Delete books from the reading list
+* Responsive web interface
+* Server-side rendering with EJS templates
+* Full CRUD functionality (Create, Read, Update, Delete)
 
-## Database Setup
-Before running the app, make sure you have PostgreSQL installed and running.
+## Screenshots
 
-1. Create a database named `booklist` (or any name you prefer):
+### Homepage
 
-```sql
-CREATE DATABASE booklist;
+![Book Tracker Homepage](screenshots/homepage.png)
 
--- Connect to the database you created
-\c booklist
+### Edit Book Page
 
--- Create the books table
-CREATE TABLE books (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    author VARCHAR(255) DEFAULT 'Unknown Author',
-    notes TEXT,
-    date_read DATE,
-    rating INTEGER,
-    cover_url TEXT
-);
+![Book Tracker Edit Page](screenshots/edit-book.png)
+
+## Tech Stack
+
+### Backend
+
+* Node.js
+* Express.js
+* PostgreSQL
+* pg (node-postgres)
+* Axios
+* dotenv
+
+### Frontend
+
+* EJS templates
+* HTML
+* CSS
+
+### API Integration
+
+* OpenLibrary API — used to retrieve book information and cover images
+
+## Database
+
+The application uses PostgreSQL.
+
+Database:
+
+```
+booklist
 ```
 
-Installation & Running the App
-Follow these steps to get the app running locally:
+Main table:
+
+```
+books
+```
+
+Table fields:
+
+```
+id
+title
+author
+rating
+notes
+date_read
+cover_url
+```
+
+## Installation
+
+Clone the repository:
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd <your-project-folder>
+git clone <your-repository-url>
+```
 
-# Install dependencies
+Navigate into the project folder:
+
+```bash
+cd book-tracker
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
 
-# Start the server
-nodemon index.js
+## Environment Variables
 
-# Open in browser
+Create a `.env` file in the project root:
+
+```env
+DB_USER=postgres
+DB_HOST=localhost
+DB_NAME=booklist
+DB_PASSWORD=your_password
+DB_PORT=5432
+```
+
+Replace `your_password` with your PostgreSQL password.
+
+## Running the Application
+
+Start the server:
+
+```bash
+npm start
+```
+
+For development with automatic restarting:
+
+```bash
+npm run dev
+```
+
+The application will run at:
+
+```
 http://localhost:3000
 ```
+
+## Project Structure
+
+```
+book-tracker
+│
+├── server.js
+├── package.json
+├── package-lock.json
+├── .env
+├── .gitignore
+│
+├── public
+│   ├── assets
+│   │   └── default-cover.jpg
+│   └── styles
+│       └── main.css
+│
+└── views
+    ├── index.ejs
+    ├── edit.ejs
+    └── partials
+        ├── header.ejs
+        └── footer.ejs
+```
+
+## Future Improvements
+
+* User authentication and personal accounts
+* Search and filtering functionality
+* Reading progress tracking
+* Book categories and genres
+* Cloud deployment
+* Improved mobile experience
+
+## Author
+
+**Tim Baker**
+
+Built as a full-stack development project to practise working with:
+
+* REST APIs
+* Server-side rendering
+* PostgreSQL databases
+* CRUD operations
+* Environment configuration

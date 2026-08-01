@@ -1,20 +1,25 @@
 {
-  "name": "capstone_booklist",
+  "name": "Book-Tracker",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A full-stack book tracking application built with Express, PostgreSQL, EJS, and the Open Library API.",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Tim Baker",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.13.6",
     "body-parser": "^2.2.2",
+    "dotenv": "^17.4.2",
     "ejs": "^4.0.1",
     "express": "^5.2.1",
     "pg": "^8.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }

@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
@@ -7,13 +8,14 @@ const app = express();
 const port = 3000;
 
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "booklist",
-  password: "database",
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 db.connect();
+console.log(process.env.DB_NAME);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -49,7 +51,7 @@ app.post("/add", async (req, res) => {
     const bookInfo = await axios.get(
       `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`
     );
-    console.log("Open Library response:", bookInfo.data);
+
 
     if (bookInfo.data.docs.length > 0) {
       const book = bookInfo.data.docs[0];
@@ -93,7 +95,7 @@ app.get("/edit/:id", async (req, res) => {
 app.post("/edit", async (req, res) => {
   try {
     const bookId = parseInt(req.body.id, 10);
-    const notesUpdated = req.body.notes
+    const notesUpdated = req.body.notes.trim();
     const ratingUpdated = parseInt(req.body.rating, 10) || null;
     const dateUpdated = req.body.date_read || null;
 
