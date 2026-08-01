@@ -2,7 +2,7 @@
 
 A full-stack book tracking application built with **Node.js, Express, PostgreSQL, EJS, and the OpenLibrary API**.
 
-Book Tracker allows users to create and manage a personal reading list. When adding a book, the application automatically retrieves the author and cover image using the OpenLibrary API, then stores the information in a PostgreSQL database.
+Book Tracker allows users to create and manage a personal reading list. When adding a book, the application automatically retrieves the author and cover image from the OpenLibrary API and stores the information in a PostgreSQL database.
 
 ## Features
 
@@ -40,32 +40,32 @@ Book Tracker allows users to create and manage a personal reading list. When add
 ### Frontend
 
 * EJS templates
-* HTML
-* CSS
+* HTML5
+* CSS3
 
 ### API Integration
 
-* OpenLibrary API — used to retrieve book information and cover images
+* OpenLibrary API – used to retrieve book information and cover images
 
 ## Database
 
-The application uses PostgreSQL.
+The application uses a PostgreSQL database.
 
-Database:
+**Database:**
 
-```
+```text
 booklist
 ```
 
-Main table:
+**Main table:**
 
-```
+```text
 books
 ```
 
-Table fields:
+**Table fields:**
 
-```
+```text
 id
 title
 author
@@ -80,7 +80,7 @@ cover_url
 Clone the repository:
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/zireael06/book-tracker.git
 ```
 
 Navigate into the project folder:
@@ -97,7 +97,7 @@ npm install
 
 ## Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root with the following variables:
 
 ```env
 DB_USER=postgres
@@ -125,20 +125,14 @@ npm run dev
 
 The application will run at:
 
-```
+```text
 http://localhost:3000
 ```
 
 ## Project Structure
 
-```
+```text
 book-tracker
-│
-├── server.js
-├── package.json
-├── package-lock.json
-├── .env
-├── .gitignore
 │
 ├── public
 │   ├── assets
@@ -146,22 +140,31 @@ book-tracker
 │   └── styles
 │       └── main.css
 │
-└── views
-    ├── index.ejs
-    ├── edit.ejs
-    └── partials
-        ├── header.ejs
-        └── footer.ejs
+├── screenshots
+│   ├── homepage.png
+│   └── edit-book.png
+│
+├── views
+│   ├── partials
+│   │   ├── header.ejs
+│   │   └── footer.ejs
+│   ├── edit.ejs
+│   └── index.ejs
+│
+├── .gitignore
+├── package-lock.json
+├── package.json
+└── server.js
 ```
 
 ## Future Improvements
 
-* User authentication and personal accounts
-* Search and filtering functionality
+* User authentication and user accounts
+* Search and filter books
 * Reading progress tracking
 * Book categories and genres
 * Cloud deployment
-* Improved mobile experience
+* Improved mobile responsiveness
 
 ## Author
 
@@ -170,7 +173,7 @@ book-tracker
 Built as a full-stack development project to practise working with:
 
 * REST APIs
-* Server-side rendering
+* Server-side rendering with EJS
 * PostgreSQL databases
 * CRUD operations
-* Environment configuration
+* Environment variable configuration
